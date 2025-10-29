@@ -81,7 +81,7 @@ query-and-overlap-method-pipeline/
     │
     ├── script 2 query method enrichment/
     │   ├── input/
-    │   │   ├── GSE135893_matrix.mtx            # Raw scRNA-seq expression matrix (>1 GB)
+    │   │   ├── GSE135893_matrix.mtx            # Raw scRNA-seq expression matrix (large, excluded)
     │   │   ├── GSE135893_genes.tsv             # Gene names
     │   │   ├── GSE135893_barcodes.tsv          # Cell barcodes
     │   │   ├── GSE135893_IPF_metadata.csv      # Cell metadata
@@ -102,14 +102,16 @@ query-and-overlap-method-pipeline/
     │
     └── script 3 overlap method enrichment/
         ├── input/
-        │   ├── query method enrichment.RData
-        │   └── cell_type_DEGs.csv
+        │   └── query method enrichment.RData          # Output from Step 2 (large; excluded)
         ├── code/
-        │   └── overlap method to calculate overlap FDR.R
+        │   └── overlap method to calculate overlap FDR.R  # Main R script for overlap-based FDR calculation
         └── output/
-            ├── overlap_method_enrichment.RData
-            ├── overlap_summary.xlsx
-            └── overlap_bubble_plot.pdf
+            ├── overlap enrichment heatmap summary.pdf         # Visualization of overlap enrichment by heatmap
+            ├── overlap positive enrichment bubble plot summary.pdf
+            ├── overlap negative depletion bubble plot summary.pdf
+            ├── summary of d value 30 cell types in control.xlsx   # Control cohort Cohen’s d summary
+            ├── summary of d value 31 cell types in IPF.xlsx       # IPF cohort Cohen’s d summary
+            └── overlap method enrichment.RData                    # Final computed results (large; excluded)
 ```
 
 ------------------------------------------------------------------------
