@@ -23,7 +23,8 @@ This repository presents an R-based workflow to infer **disease-specific
 or driver cell types** within histopathological regions by **multi-omics
 integration**. Conventional deconvolution methods perform well for
 transcriptomic integrations (spatial vs single-cell), but they fail
-across molecular modalities (e.g., RNA vs protein).\
+across molecular modalities (e.g., RNA vs protein).
+
 Here, we implement two **modality-agnostic** approaches—**Query** and
 **Overlap**—to bridge this gap.
 
@@ -34,7 +35,7 @@ two methods to combine LCM spatial proteomics and single cell
 transcriptomics in another repository.
 
 The methods were applied to idiopathic pulmonary fibrosis (IPF) datasets
-and published in *Proteomes (2025, 13(1):3)*.\
+and published in *Proteomes (2025, 13(1):3)*.
 👉 DOI:
 [10.3390/proteomes13010003](https://doi.org/10.3390/proteomes13010003)
 
@@ -44,10 +45,10 @@ and published in *Proteomes (2025, 13(1):3)*.\
 
 -   **Spatial transcriptomics (Bruker GeoMx)**: 1085 genes across 7
     histopathological regions from human IPF and control lungs (Eyres et
-    al., *Cell Reports*, 2022; PMID: 35977489).\
+    al., *Cell Reports*, 2022; PMID: 35977489).
 -   **Single-cell transcriptomics (10x Genomics)**: 33,694 genes across
     89,326 cells from IPF and control donors (Habermann et al., *Science
-    Advances*, 2020; PMID: 32832598).\
+    Advances*, 2020; PMID: 32832598).
     After filtering, 24,470 genes remained—95.6% overlap with the
     spatial dataset.
 
@@ -60,14 +61,41 @@ control donor and IPF patient resources.
 
 ## 📁 Repository Structure
 
+
+
 ```         
 query-and-overlap-method-pipeline/
-├── README.md                             # This file
-├── requirements.txt                      # R package dependencies
+├── README.md                               # This file
+├── requirements.txt                        # R package dependencies
 └── Rscripts/
-    ├── script 1 region specific gene/    # Step 1: Region-specific gene extraction
-    ├── script 2 query method enrichment/ # Step 2: Query-based enrichment
-    └── script 3 overlap method enrichment/ # Step 3: Overlap-based enrichment
+    ├── script 1 region specific gene/       # Step 1: Region-specific gene extraction
+    │   ├── region specific gene.R           # Main analysis script
+    │   ├── region specific gene.RData
+    │   ├── region specific gene summary.xlsx
+    │   ├── region_specific_feature_list.rds # Output: region-specific gene list
+    │   ├── Supplementary Table 1.csv        # sample metadata
+    │   └── Supplementary Table 2.xlsx       # GeoMx spatial expression table
+    │
+    ├── script 2 query method enrichment/    # Step 2: Query-based enrichment analysis
+    │   ├── query method enrichment.R        # Main R script
+    │   ├── query method enrichment.RData    # RData output
+    │   ├── GSE135893_matrix.mtx             # Raw expression matrix
+    │   ├── GSE135893_genes.tsv              # Gene names
+    │   ├── GSE135893_barcodes.tsv           # Cell barcodes
+    │   ├── GSE135893_IPF_metadata.csv       # Cell metadata
+    │   ├── region_specific_feature_list.rds # Region-specific genes from Step 1
+    │   ├── 24470 gene annotation.xlsx       # Filtered gene annotation reference
+    │   ├── Healthy alveoli signature.txt
+    │   ├── Distal alveoli signature.txt
+    │   ├── Fibroblast foci signature.txt
+    │   ├── IPF blood vessel signature.txt
+    │   ├── Immune infiltrate signature.txt
+    │   ├── query enrichment score summary table.xlsx
+    │   ├── query positive enrichment bubble plot summary.pdf
+    │   └── query negative depletion bubble plot summary.pdf
+    │
+    └── script 3 overlap method enrichment/  # Step 3: Overlap-based enrichment
+        └── (scripts and outputs for overlap method)
 ```
 
 ------------------------------------------------------------------------
@@ -93,7 +121,7 @@ install.packages(c(
 Clone this repository:
 
 ``` bash
-git clone https://github.com/<your-username>/query-and-overlap-method-pipeline.git
+git clone https://github.com/outobi/query-and-overlap-method-pipeline.git
 cd query-and-overlap-method-pipeline
 ```
 
@@ -108,9 +136,9 @@ You can directly run the scripts in RStudio.
 **Script:**
 `Rscripts/script 1 region specific gene/region specific gene.R`
 
--   Load raw **GeoMx spatial transcriptomics** data and metadata.\
+-   Load raw **GeoMx spatial transcriptomics** data and metadata.
 -   Perform Wilcoxon rank-sum tests to identify upregulated
-    region-specific genes.\
+    region-specific genes.
 -   Export significant region-specific feature lists
     (`region_specific_feature_list.rds`).
 
@@ -122,12 +150,12 @@ You can directly run the scripts in RStudio.
 `Rscripts/script 2 query method enrichment/query enrichment method.R`
 
 -   Import preprocessed **scRNA-seq Seurat object** and
-    **`region_specific_feature_list.rds`**.\
--   Match region-specific genes with scRNA-seq gene list.\
--   Normalize expression across cells and genes.\
+    **`region_specific_feature_list.rds`**.
+-   Match region-specific genes with scRNA-seq gene list.
+-   Normalize expression across cells and genes.
 -   Compute enrichment **z-scores** by summing average expression per
-    cell type.\
--   Visualize enrichment via **bubble plots**.\
+    cell type.
+-   Visualize enrichment via **bubble plots**.
 -   Output: `query method enrichment.RData`.
 
 ------------------------------------------------------------------------
@@ -137,12 +165,12 @@ You can directly run the scripts in RStudio.
 **Script:**
 `Rscripts/script 3 overlap method enrichment/overlap enrichment method.R`
 
--   Load **query method enrichment.RData**.
+-   Load `query method enrichment.RData`.
 -   Identify cell type–specific genes via **t-tests** and **Cohen’s d
-    values**.\
+    values**.
 -   Compute **hypergeometric overlaps** between region- and cell-type
-    gene sets.\
--   Visualize enrichment via **bubble plots**.\
+    gene sets.
+-   Visualize enrichment via **bubble plots**.
 -   Output: `overlap method enrichment.RData`.
 
 ------------------------------------------------------------------------
@@ -153,24 +181,25 @@ Unlike classical deconvolution that estimates cell-type proportions,
 these methods quantify **relative enrichment**:
 
 -   **Query Method**: Measures summed region gene expression across cell
-    types → higher *z-score* = stronger enrichment.\
+    types → higher positive *z-score* = stronger enrichment and higher negative *z-score* = stronger depletion. 
 -   **Overlap Method**: Evaluates overlap significance between region
-    and cell-type gene sets → larger overlap = stronger enrichment.
+    and cell-type gene sets → larger overlap = stronger enrichment and smaller overlap = stronger depletion.
 
-**Caution:**\
-These results describe **relative enrichment**, not absolute cell type
-percentage composition like deconvolution.\
+**Caution:**
+- These results describe **relative enrichment**, not absolute cell type
+percentage composition like deconvolution.
 Compare enrichments **within the same region type**, not across regions.
-The query method is more quantitative and reliable than the qualitative
-Overlap method.\
-Some regions do not have prominent region-specific genes
+- The query method is more quantitative and reliable than the qualitative
+Overlap method.
+- Some regions do not have prominent region-specific genes
 based on certain standards, like control blood vessel and IPF adjacent
 alveoli. In this case, we do not recommend using this method to derive 
-cell type enrichment.\
+cell type enrichment.
 
-**Biological insight examples:** - **Fibroblast foci** → enriched for
-mesenchymal cells (fibroblasts, myofibroblasts)\
-- **Immune infiltrates** → enriched for macrophages and lymphocytes\
+**Biological insight examples:** 
+- **Fibroblast foci** → enriched for
+mesenchymal cells (fibroblasts, myofibroblasts)
+- **Immune infiltrates** → enriched for macrophages and lymphocytes
 - **IPF alveoli** → enriched for epithelial cells compared with control
 alveoli, especially transitional AT2 and aberrant KRT5⁻/KRT17⁺ basaloid
 cells
@@ -179,11 +208,11 @@ cells
 
 ## 📚 References
 
--   Li et al. *Proteomes*, 2025, 13(1):3 — [DOI:
+-   IPF multiomics integration: Wang et al. *Proteomes*, 2025, 13(1):3 — [DOI:
     10.3390/proteomes13010003](https://doi.org/10.3390/proteomes13010003)\
--   Eyres et al., *Cell Reports*, 2022 — [DOI:
+-   GeoMx spatial transcriptomics: Eyres et al., *Cell Reports*, 2022 — [DOI:
     10.1016/j.celrep.2022.111230](https://doi.org/10.1016/j.celrep.2022.111230)\
--   Habermann et al., *Science Advances*, 2020 — [DOI:
+-   scRNAseq transcriptomics: Habermann et al., *Science Advances*, 2020 — [DOI:
     10.1126/sciadv.aba1972](https://www.science.org/doi/epdf/10.1126/sciadv.aba1972)\
 -   Query Method Reference — [BMJ Open Resp. Res. 2023,
     10:e001391](https://bmjopenrespres.bmj.com/content/10/1/e001391)\
