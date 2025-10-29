@@ -81,7 +81,7 @@ query-and-overlap-method-pipeline/
     │
     ├── script 2 query method enrichment/
     │   ├── input/
-    │   │   ├── GSE135893_matrix.mtx            # Raw scRNA-seq expression matrix (large, excluded)
+    │   │   ├── GSE135893_matrix.mtx            # Raw scRNA-seq expression matrix (large, GSE135893_matrix.mtx.gz PROVIDED IN https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE135893)
     │   │   ├── GSE135893_genes.tsv             # Gene names
     │   │   ├── GSE135893_barcodes.tsv          # Cell barcodes
     │   │   ├── GSE135893_IPF_metadata.csv      # Cell metadata
