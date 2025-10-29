@@ -1,8 +1,4 @@
----
-editor_options: 
-  markdown: 
-    wrap: 72
----
+
 
 # 🧬 Cell Type Inference via Modality-Agnostic Query and Overlap Methods
 
@@ -14,7 +10,7 @@ editor_options:
 
 Recent advancements in human omics technologies—particularly
 transcriptomics and proteomics—have enabled high-resolution mapping of
-molecular and cellular heterogeneity underlying disease pathogenesis.\
+molecular and cellular heterogeneity underlying disease pathogenesis.
 Spatial transcriptomics and proteomics allow direct profiling of
 histopathological regions from FFPE tissue sections using platforms such
 as **Bruker GeoMx**, **CosMx**, and **10X Genomics Visium/Xenium**,
@@ -166,10 +162,11 @@ These results describe **relative enrichment**, not absolute cell type
 percentage composition like deconvolution.\
 Compare enrichments **within the same region type**, not across regions.
 The query method is more quantitative and reliable than the qualitative
-Overlap method. Some regions do not have prominent region-specific genes
+Overlap method.\
+Some regions do not have prominent region-specific genes
 based on certain standards, like control blood vessel and IPF adjacent
-alveoli. In this case, we cannot use this method to derive cell type
-enrichment.
+alveoli. In this case, we do not recommend using this method to derive 
+cell type enrichment.\
 
 **Biological insight examples:** - **Fibroblast foci** → enriched for
 mesenchymal cells (fibroblasts, myofibroblasts)\
