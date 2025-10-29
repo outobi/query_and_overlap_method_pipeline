@@ -67,35 +67,49 @@ control donor and IPF patient resources.
 query-and-overlap-method-pipeline/
 ├── README.md                               # This file
 ├── requirements.txt                        # R package dependencies
-└── Rscripts/
-    ├── script 1 region specific gene/       # Step 1: Region-specific gene extraction
-    │   ├── region specific gene.R           # Main analysis script
-    │   ├── region specific gene.RData
-    │   ├── region specific gene summary.xlsx
-    │   ├── region_specific_feature_list.rds # Output: region-specific gene list
-    │   ├── Supplementary Table 1.csv        # sample metadata
-    │   └── Supplementary Table 2.xlsx       # GeoMx spatial expression table
+├── Rscripts/
+    ├── script 1 region specific gene/
+    │   ├── input/
+    │   │   ├── Supplementary Table 1.csv   # sample metadata
+    │   │   └── Supplementary Table 2.xlsx  # expression table
+    │   ├── code/
+    │   │   └── region_specific_gene.R
+    │   └── output/
+    │       ├── region_specific_feature_list.rds
+    │       ├── region specific gene_summary.xlsx
+    │       └── region specfic gene.RData   # output RData
     │
-    ├── script 2 query method enrichment/    # Step 2: Query-based enrichment analysis
-    │   ├── query method enrichment.R        # Main R script
-    │   ├── query method enrichment.RData    # RData output
-    │   ├── GSE135893_matrix.mtx             # Raw expression matrix
-    │   ├── GSE135893_genes.tsv              # Gene names
-    │   ├── GSE135893_barcodes.tsv           # Cell barcodes
-    │   ├── GSE135893_IPF_metadata.csv       # Cell metadata
-    │   ├── region_specific_feature_list.rds # Region-specific genes from Step 1
-    │   ├── 24470 gene annotation.xlsx       # Filtered gene annotation reference
-    │   ├── Healthy alveoli signature.txt
-    │   ├── Distal alveoli signature.txt
-    │   ├── Fibroblast foci signature.txt
-    │   ├── IPF blood vessel signature.txt
-    │   ├── Immune infiltrate signature.txt
-    │   ├── query enrichment score summary table.xlsx
-    │   ├── query positive enrichment bubble plot summary.pdf
-    │   └── query negative depletion bubble plot summary.pdf
+    ├── script 2 query method enrichment/
+    │   ├── input/
+    │   │   ├── GSE135893_matrix.mtx            # Raw scRNA-seq expression matrix (>1 GB)
+    │   │   ├── GSE135893_genes.tsv             # Gene names
+    │   │   ├── GSE135893_barcodes.tsv          # Cell barcodes
+    │   │   ├── GSE135893_IPF_metadata.csv      # Cell metadata
+    │   │   └── region_specific_feature_list.rds # Output from Step 1
+    │   ├── code/
+    │   │   └── query_method_enrichment.R       # Main query-based enrichment script
+    │   └── output/
+    │       ├── Healthy_alveoli_signature.txt
+    │       ├── Distal_alveoli_signature.txt
+    │       ├── IPF_blood_vessel_signature.txt
+    │       ├── Immune_infiltrate_signature.txt
+    │       ├── Fibroblast_foci_signature.txt
+    │       ├── 24470_gene_annotation.xlsx      # Gene annotation reference after filtering
+    │       ├── query_method_enrichment.RData   # Large output; excluded
+    │       ├── query_enrichment_score_summary_table.xlsx
+    │       ├── query_positive_enrichment_bubble_plot_summary.pdf
+    │       └── query_negative_depletion_bubble_plot_summary.pdf
     │
-    └── script 3 overlap method enrichment/  # Step 3: Overlap-based enrichment
-        └── (scripts and outputs for overlap method)
+    └── script 3 overlap method enrichment/
+        ├── input/
+        │   ├── query method enrichment.RData
+        │   └── cell_type_DEGs.csv
+        ├── code/
+        │   └── overlap method to calculate overlap FDR.R
+        └── output/
+            ├── overlap_method_enrichment.RData
+            ├── overlap_summary.xlsx
+            └── overlap_bubble_plot.pdf
 ```
 
 ------------------------------------------------------------------------
