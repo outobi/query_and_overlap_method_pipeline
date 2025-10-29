@@ -111,7 +111,7 @@ query-and-overlap-method-pipeline/
             ├── overlap negative depletion bubble plot summary.pdf
             ├── summary of d value 30 cell types in control.xlsx   # Control cohort Cohen’s d summary
             ├── summary of d value 31 cell types in IPF.xlsx       # IPF cohort Cohen’s d summary
-            └── overlap method enrichment.RData                    # Final computed results (large; excluded)
+            └── overlap method to calculate overlap FDR.RData                    # Final computed results (large; excluded)
 ```
 
 ------------------------------------------------------------------------
@@ -179,7 +179,7 @@ You can directly run the scripts in RStudio.
 ### **Step 3. Overlap Method: Gene-Set Enrichment**
 
 **Script:**
-`Rscripts/script 3 overlap method enrichment/overlap enrichment method.R`
+`Rscripts/script 3 overlap method enrichment/overlap method to calculate overlap FDR.R`
 
 -   Load `query method enrichment.RData`.
 -   Identify cell type–specific genes via **t-tests** and **Cohen’s d
@@ -187,7 +187,7 @@ You can directly run the scripts in RStudio.
 -   Compute **hypergeometric overlaps** between region- and cell-type
     gene sets.
 -   Visualize enrichment via **bubble plots**.
--   Output: `overlap method enrichment.RData`.
+-   Output: `overlap method to calculate overlap FDR.RData`.
 
 ------------------------------------------------------------------------
 
