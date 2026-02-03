@@ -17,10 +17,10 @@ as **Bruker GeoMx**, **CosMx**, and **10X Genomics Visium/Xenium**,
 while **laser capture microdissection (LCM)** combined with LC-MS/MS
 enables regional proteomic quantification. The greater the alignment
 between tissue morphology and molecular readouts, the more biologically
-informative the analysis becomes.
+informative the spatial analysis becomes.
 
-This repository presents an R-based workflow to infer **disease-specific
-or driver cell types** within histopathological regions by **multi-omics
+This repository presents an R-based workflow to infer **disease-enriched 
+or associated cell types** within histopathological regions by **multi-omics
 integration**. Conventional deconvolution methods perform well for
 transcriptomic integrations (spatial vs single-cell), but they fail
 across molecular modalities (e.g., RNA vs protein).
@@ -30,11 +30,11 @@ Here, we implement two **modality-agnostic** approaches—**Query** and
 
 Specifically, I will first combine spatial transcriptomics and single
 cell transcriptomics to derive cell type enrichment/depletion in a given
-histopathological region in this repository. Then I will implement these
-two methods to combine LCM spatial proteomics and single cell
-transcriptomics in another repository.
+histopathological region from FFPE tissue section in this repository. 
+Then I will implement these two methods to combine LCM spatial proteomics 
+and single cell transcriptomics in another repository.
 
-The methods were applied to idiopathic pulmonary fibrosis (IPF) datasets
+These methods were applied to idiopathic pulmonary fibrosis (IPF) datasets
 and published in *Proteomes (2025, 13(1):3)*.
 👉 DOI:
 [10.3390/proteomes13010003](https://doi.org/10.3390/proteomes13010003)
@@ -202,23 +202,24 @@ these methods quantify **relative enrichment**:
     and cell-type gene sets → larger overlap = stronger enrichment and smaller overlap = stronger depletion.
 
 **Caution:**
-- These results describe **relative enrichment**, not absolute cell type
-percentage composition like deconvolution.
-Compare enrichments **within the same region type**, not across regions.
-- The query method is more quantitative and reliable than the qualitative
-Overlap method.
+- These results describe **relative enrichment** rather than absolute cell
+type composition derived from common deconvolution methods.
+- Compare enrichments **within the same region type**, not across regions.
+- The Query method is more quantitative and reliable than the
+Overlap method, which is more qualitative.
 - Some regions do not have prominent region-specific genes
 based on certain standards, like control blood vessel and IPF adjacent
 alveoli. In this case, we do not recommend using this method to derive 
 cell type enrichment.
 
-**Biological insight examples:** 
+**Remarkable biological insights:** 
 - **Fibroblast foci** → enriched for
-mesenchymal cells (fibroblasts, myofibroblasts)
-- **Immune infiltrates** → enriched for macrophages and lymphocytes
+mesenchymal cells (fibroblasts, myofibroblasts, PLIN2+ fibroblasts)
+- **Immune infiltrates** → enriched for myoleids and lymphocytes only
 - **IPF alveoli** → enriched for epithelial cells compared with control
-alveoli, especially transitional AT2 and aberrant KRT5⁻/KRT17⁺ basaloid
-cells
+alveoli from healthy donors, especially transitional AT2 and aberrant
+KRT5⁻/KRT17⁺ basaloid cells, implying potential epithelial damage and
+dysorganized repair.
 
 ------------------------------------------------------------------------
 
