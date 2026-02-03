@@ -102,16 +102,16 @@ query-and-overlap-method-pipeline/
     │
     └── script 3 overlap method enrichment/
         ├── input/
-        │   └── query method enrichment.RData                      # Output from Step 2 (large; https://zenodo.org/records/17476683)
+        │   └── query_method_enrichment.RData                      # Output from Step 2 (large; https://zenodo.org/records/17476683)
         ├── code/
-        │   └── overlap method to calculate overlap FDR.R  # Main R script for overlap-based FDR calculation
+        │   └── overlap_method_to_calculate_overlap_FDR.R  # Main R script for overlap-based FDR calculation
         └── output/
-            ├── overlap enrichment heatmap summary.pdf             # Visualization of overlap enrichment by heatmap
-            ├── overlap positive enrichment bubble plot summary.pdf
-            ├── overlap negative depletion bubble plot summary.pdf
-            ├── summary of d value 30 cell types in control.xlsx   # Control cohort Cohen’s d summary
-            ├── summary of d value 31 cell types in IPF.xlsx       # IPF cohort Cohen’s d summary
-            └── overlap method to calculate overlap FDR.RData      # Final computed results (large; https://zenodo.org/records/17476683)
+            ├── overlap_enrichment_heatmap_summary.pdf             # Visualization of overlap enrichment by heatmap
+            ├── overlap_positive_enrichment_bubble_plot_summary.pdf
+            ├── overlap_negative_depletion_bubble_plot_summary.pdf
+            ├── summary_of_d_value_30_cell_types_in_control.xlsx   # Control cohort Cohen’s d summary
+            ├── summary_of_d_value_31_cell_types_in_IPF.xlsx       # IPF cohort Cohen’s d summary
+            └── overlap_method_to_calculate_overlap_FDR.RData      # Final computed results (large; https://zenodo.org/records/17476683)
 ```
 
 ------------------------------------------------------------------------
