@@ -70,14 +70,14 @@ query-and-overlap-method-pipeline/
 ├── Rscripts/
     ├── script 1 region specific gene/
     │   ├── input/
-    │   │   ├── Supplementary Table 1.csv   # sample metadata
-    │   │   └── Supplementary Table 2.xlsx  # expression table
+    │   │   ├── Supplementary_Table_1.csv   # sample metadata
+    │   │   └── Supplementary_Table_2.xlsx  # expression table
     │   ├── code/
     │   │   └── region_specific_gene.R
     │   └── output/
     │       ├── region_specific_feature_list.rds
-    │       ├── region specific gene_summary.xlsx
-    │       └── region specfic gene.RData   # output RData
+    │       ├── region_specific_gene_summary.xlsx
+    │       └── region_specfic_gene.RData   # output RData
     │
     ├── script 2 query method enrichment/
     │   ├── input/
