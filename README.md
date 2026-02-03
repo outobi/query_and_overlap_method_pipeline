@@ -215,7 +215,7 @@ cell type enrichment.
 **Remarkable biological insights:** 
 - **Fibroblast foci** → enriched for
 mesenchymal cells (fibroblasts, myofibroblasts, PLIN2+ fibroblasts)
-- **Immune infiltrates** → enriched for myoleids and lymphocytes only
+- **Immune infiltrates** → enriched for myeloids and lymphocytes only
 - **IPF alveoli** → enriched for epithelial cells compared with control
 alveoli from healthy donors, especially transitional AT2 and aberrant
 KRT5⁻/KRT17⁺ basaloid cells, implying potential epithelial damage and
