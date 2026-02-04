@@ -181,7 +181,7 @@ You can directly run the scripts in RStudio.
 **Script:**
 `Rscripts/script 3 overlap method enrichment/overlap_method_to_calculate_overlap_FDR.R`
 
--   Load `query method enrichment.RData`.
+-   Load `query_method_enrichment.RData`.
 -   Identify cell type–specific genes via **t-tests** and **Cohen’s d
     values**.
 -   Compute **hypergeometric overlaps** between region- and cell-type
