@@ -137,8 +137,8 @@ install.packages(c(
 Clone this repository:
 
 ``` bash
-git clone https://github.com/outobi/query-and-overlap-method-pipeline.git
-cd query-and-overlap-method-pipeline
+git clone https://github.com/outobi/query_and_overlap_method_pipeline.git
+cd query_and_overlap_method_pipeline
 ```
 
 You can directly run the scripts in RStudio.
@@ -150,7 +150,7 @@ You can directly run the scripts in RStudio.
 ### **Step 1. Region-Specific Gene Extraction**
 
 **Script:**
-`Rscripts/script 1 region specific gene/region specific gene.R`
+`Rscripts/script 1 region specific gene/region_specific_gene.R`
 
 -   Load raw **GeoMx spatial transcriptomics** data and metadata.
 -   Perform Wilcoxon rank-sum tests to identify upregulated
@@ -163,7 +163,7 @@ You can directly run the scripts in RStudio.
 ### **Step 2. Query Method: Cell-Type Enrichment**
 
 **Script:**
-`Rscripts/script 2 query method enrichment/query enrichment method.R`
+`Rscripts/script 2 query method enrichment/query_enrichment_method.R`
 
 -   Import preprocessed **scRNA-seq Seurat object** and
     **`region_specific_feature_list.rds`**.
@@ -172,14 +172,14 @@ You can directly run the scripts in RStudio.
 -   Compute enrichment **z-scores** by summing average expression per
     cell type.
 -   Visualize enrichment via **bubble plots**.
--   Output: `query method enrichment.RData`.
+-   Output: `query_method_enrichment.RData`.
 
 ------------------------------------------------------------------------
 
-### **Step 3. Overlap Method: Gene-Set Enrichment**
+### **Step 3. Overlap Method: Gene Set Enrichment**
 
 **Script:**
-`Rscripts/script 3 overlap method enrichment/overlap method to calculate overlap FDR.R`
+`Rscripts/script 3 overlap method enrichment/overlap_method_to_calculate_overlap_FDR.R`
 
 -   Load `query method enrichment.RData`.
 -   Identify cell type–specific genes via **t-tests** and **Cohen’s d
@@ -187,7 +187,7 @@ You can directly run the scripts in RStudio.
 -   Compute **hypergeometric overlaps** between region- and cell-type
     gene sets.
 -   Visualize enrichment via **bubble plots**.
--   Output: `overlap method to calculate overlap FDR.RData`.
+-   Output: `overlap_method_to_calculate_overlap_FDR.RData`.
 
 ------------------------------------------------------------------------
 
@@ -242,7 +242,7 @@ dysorganized repair.
 
 ## 🤝 Contributing
 
-Contributions are welcome—please submit issues or pull requests on
+Contributions are welcome — please submit issues or pull requests on
 GitHub.
 
 ------------------------------------------------------------------------
